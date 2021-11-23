@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class ContactAdapter(private val mContacts: MutableList<Contact>): RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
 
@@ -34,10 +36,11 @@ class ContactAdapter(private val mContacts: MutableList<Contact>): RecyclerView.
         val contact: Contact = mContacts[position]
         val nameTextView: TextView = holder.nameTextView
         val surnameTextView: TextView = holder.surnameTextView
+        val contactImageView: ImageView = holder.itemView.findViewById(R.id.image)
 
         nameTextView.text = contact.name
         surnameTextView.text = contact.surname
-
+        Glide.with(holder.itemView).load(contact.urlPhoto).into(contactImageView)
 
     }
 
